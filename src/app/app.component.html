@@ -1,0 +1,79 @@
+
+<agm-map 
+  [latitude]="lat"
+  [longitude]="lng"
+  [zoom]="zoom"
+  [disableDefaultUI]="false"
+  [zoomControl]="false"
+  (mapClick)="mapClicked($event)">
+
+  <agm-marker 
+    *ngFor="let m of markers; let i = index"
+    (markerClick)="clickedMarker(m.label, i)"
+    [latitude]="m.lat"
+    [longitude]="m.lng"
+    [label]="m.label"
+    [markerDraggable]="m.draggable"
+    (dragEnd)="markerDragEnd(m, $event)">    
+  </agm-marker>
+  
+  <agm-circle [latitude]="lat + 0.3" [longitude]="lng" 
+      [radius]="5000"
+      [fillColor]="'red'"
+      [circleDraggable]="true"
+      [editable]="true">
+  </agm-circle>
+
+</agm-map>
+
+<br>
+<br>
+
+<div class="row">
+  <div class="col-sm-3 list-container">
+    <h3>Waypoints</h3>
+    <ul class="list-group sortable clone-lists" [sortablejs]="markers" [sortablejsOptions]="clone1Options">
+      <li class="list-group-item" *ngFor="let item of markers">
+        Location {{ item.label }} <br>
+        Lat: {{ item.lat }} <br>
+        Long: {{ item.lng }}
+        <button type="button" class="btn btn-primary float-right" (click)="remove_marker(item)" *ngIf="tourListView">Remove</button>
+      </li>
+    </ul>
+  </div>
+
+
+  <div class="col-sm-4 list-container float-left" *ngIf="tourListView">
+    <h3>Tours</h3>
+    <p *ngIf="!tours.length">No Tours currently!</p>
+    <ul class="list-group"*ngIf="tours.length">
+      <li class="list-group-item" *ngFor="let item of tours">
+        {{item.itinerary}} <button type="button" class="btn btn-primary float-right" (click)="edit_tour(item)">Edit</button>
+      </li>
+    </ul>
+  </div>
+
+  <div class="col-sm-4 list-container" *ngIf="!tourListView">
+    <h3>Tour</h3>
+    <div class="col-sm-9 float-left">
+      <ul class="list-group sortable clone-lists" [sortablejs]="tour" [sortablejsOptions]="clone2Options">
+        <li class="list-group-item" *ngFor="let item of tour">
+          <div>
+            Location {{ item.label }} <br>
+            Lat: {{ item.lat }} <br>
+            Long: {{ item.lng }}
+          </div>
+          <button type="button" class="btn btn-primary float-right" (click)="remove_tour_marker($event, item)">Remove</button>
+        </li>
+      </ul>
+    </div>
+
+    <div class="col-sm-3 float-left">
+      <button type="button" class="btn btn-primary" (click)="save_tour()">Save</button>
+    </div>
+  </div>
+
+  <div class="col-sm-2 float-left">
+    <button type="button" class="btn btn-primary" (click)="create_tour()">Create Tour</button>
+  </div>
+</div>

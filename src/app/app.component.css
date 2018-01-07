@@ -1,0 +1,29 @@
+agm-map {
+  height: 300px;
+}
+
+
+* {
+  font-family: Lato;
+}
+
+a {
+  color: darkblue;
+}
+
+.clone-lists {
+	min-height: 40px;
+	border: 1px solid;
+}
+
+.list-container {
+	margin-left: 20px;
+}
+
+.float-right {
+	float: right;
+}
+
+.float-left {
+	float: left;
+}
