@@ -4,10 +4,8 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 * `git clone angular-map-app`
 * `cd angular-map-app` 
-* `npm i -g @angular/cli`
-* `npm install @agm/core`
-* `npm install --save sortablejs && npm install --save angular-sortablejs`
-* `npm install ngx-bootstrap bootstrap@next --save`
+* `npm i -g @angular/cli` (if angular-cli is not installed)
+* `npm install`
 * `ng serve`
 
 >        visit http://localhost:4200
