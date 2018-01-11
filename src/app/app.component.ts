@@ -106,7 +106,6 @@ export class AppComponent  {
 
     onAdd: (event) => {
       if (this.exists) {
-        debugger
         this.exists = false
       }
     }
